@@ -4,9 +4,8 @@ const Services = require('../services');
 module.exports = async (req, res) => {
   try {
     const { taskName } = req.body;
-    const taskCreated = await Services.create(taskName);
-
-    return res.status(StatusCodes.CREATED).json(taskCreated);
+    await Services.create(taskName);
+    return res.status(StatusCodes.CREATED).end();
   } catch (err) {
     res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
